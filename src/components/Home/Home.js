@@ -13,6 +13,13 @@ class App extends Component {
     this.props.dispatch({ type: 'FETCH_MOVIES' })
   }
 
+  handleClick = (event) => {
+    console.log('event:', event)
+    console.log('event.target:', event.target)
+    console.log('event.target.id:', event.target.id)
+    //I tried setting the value of the img to be the movie.id, but event.target.value wasn't working so I had to switch it to id, and that worked. 
+  }
+
   render() {
     return (
         <div className="App">
@@ -23,12 +30,12 @@ class App extends Component {
           <ul>
             {this.props.reduxState.movies.map(movie => {
               return (
-                <>
-                  <img src={movie.poster} alt={movie.description} />
+                <div key={movie.id}>
+                  <img src={movie.poster} alt={movie.description} id={movie.id} onClick={this.handleClick} />
                   <h2>{movie.title}</h2>
                   <li>{movie.description}</li>
                   <br /> <br />
-                </>
+                </div>
               )
 
             })}
