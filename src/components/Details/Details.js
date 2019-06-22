@@ -4,19 +4,17 @@ import { connect } from 'react-redux';
 
 class Details extends Component{
 
-    // componentDidMount(){
-    //     this.retreiveInfo();
-    // }
 
-    // retreiveInfo = () => {
-    //     this.props.dispatch({ type: 'FETCH_MOVIES_GENRES'})
-    // }
-       
-    
     render(){
         return(
             <>
-            {/* {JSON.stringify(this.props.reduxState.movies_genres, null, 2)} */}
+            {/* <h1>{this.props.reduxState.movies_genres}</h1> */}
+            {/* {this.props.reduxState.movies_genres.map(object => {
+                return (
+                    <h1>{object.title}</h1>
+                )
+            })} */}
+            {JSON.stringify(this.props.reduxState.movies_genres, null, 4)}
             </>
         )
     }

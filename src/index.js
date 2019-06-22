@@ -32,7 +32,8 @@ function* fetchMovies() {
 function* fetchMoviesGenres(action) {
     try {
         console.log('fetchMoviesGenres')
-        const fetchMovieResponse = yield axios.get(`api/movies_genres/${action.payload}`)
+        const fetchMovieResponse = yield axios.get(`api/movies_genres/${action.payload.id}`)
+        yield put({ type: 'SET_MOVIES_GENRES', payload: fetchMovieResponse.data})
     } catch (error) {
         console.log('error with fetchMovies:', error)
     }
