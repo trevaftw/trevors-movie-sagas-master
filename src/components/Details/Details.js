@@ -1,5 +1,7 @@
 import React, {Component} from 'react'; 
 import { connect } from 'react-redux';
+import {Link} from 'react-router-dom'
+
 
 
 class Details extends Component{
@@ -18,6 +20,9 @@ class Details extends Component{
                     <li key={i}>{genre.name}</li>
                 )
             })}
+
+            <Link to="/"><button>Return to Movie List</button></Link>
+            
             {/* {JSON.stringify(this.props.reduxState.movies, null, 4)}
             <br /> <br />
             {JSON.stringify(this.props.reduxState.genres, null, 4)} */}
