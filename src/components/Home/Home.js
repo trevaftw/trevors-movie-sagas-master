@@ -15,7 +15,7 @@ class App extends Component {
 
   handleClick = (event) => {
     console.log('event.target.id:', event.target.id)
-    this.props.dispatch({type: 'SET_MOVIES_GENRES', payload: event.target.id})
+    this.props.dispatch({type: 'FETCH_MOVIES_GENRES', payload: event.target.id})
     this.props.history.push('/details')
     //I tried setting the value of the img to be the movie.id, but event.target.value wasn't working so I had to switch it to id, and that worked. 
     //console.log(event.target.value)
