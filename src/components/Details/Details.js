@@ -8,13 +8,19 @@ class Details extends Component{
     render(){
         return(
             <>
-            {/* <h1>{this.props.reduxState.movies_genres}</h1> */}
-            {/* {this.props.reduxState.movies_genres.map(object => {
+            {this.props.reduxState.movies.map(movie => {
                 return (
-                    <h1>{object.title}</h1>
+                    <h1>{movie.title}</h1>
                 )
-            })} */}
-            {JSON.stringify(this.props.reduxState.movies_genres, null, 4)}
+            })}
+            {this.props.reduxState.genres.map((genre, i) => {
+                return (
+                    <li key={i}>{genre.name}</li>
+                )
+            })}
+            {/* {JSON.stringify(this.props.reduxState.movies, null, 4)}
+            <br /> <br />
+            {JSON.stringify(this.props.reduxState.genres, null, 4)} */}
             </>
         )
     }

@@ -16,7 +16,8 @@ import { takeEvery, put, take } from 'redux-saga/effects';
 // Create the rootSaga generator function
 function* rootSaga() {
     yield takeEvery('FETCH_MOVIES', fetchMovies)
-    yield takeEvery('FETCH_MOVIES_GENRES', fetchMoviesGenres)
+    yield takeEvery('FETCH_SINGLE_MOVIE', fetchSingleMovie)
+    // yield takeEvery('FETCH_MOVIES_GENRES', fetchMoviesGenres)
 }
 
 function* fetchMovies() {
@@ -29,15 +30,30 @@ function* fetchMovies() {
     }
 }
 
-function* fetchMoviesGenres(action) {
-    try {
-        console.log('fetchMoviesGenres')
-        const fetchMovieResponse = yield axios.get(`api/movies_genres/${action.payload.id}`)
-        yield put({ type: 'SET_MOVIES_GENRES', payload: fetchMovieResponse.data})
-    } catch (error) {
-        console.log('error with fetchMovies:', error)
+function* fetchSingleMovie(action){
+    try{
+        // console.log('fetchSingleMovie');
+        // console.log('action.payload:', action.payload)
+        const fetchSingleMovieResponse = yield axios.get(`api/singleMovie/${action.payload}`)
+        // console.log('fetchSingleMovieResponse.data:', fetchSingleMovieResponse.data)
+        yield put({ type: 'SET_MOVIES', payload: fetchSingleMovieResponse.data })
+        const fetchSingleGenreResponse = yield axios.get(`api/movies_genres/${action.payload}`)
+        // console.log('fetchSingleGenreResponse.data:', fetchSingleGenreResponse.data)
+        yield put({ type: 'SET_TAGS', payload: fetchSingleGenreResponse.data })
+    }catch (error) {
+        console.log('error with fetchSingleMovie:', error)
     }
 }
+
+// function* fetchMoviesGenres(action) {
+//     try {
+//         console.log('fetchMoviesGenres')
+//         const fetchMovieResponse = yield axios.get(`api/movies_genres/${action.payload.id}`)
+//         yield put({ type: 'SET_MOVIES_GENRES', payload: fetchMovieResponse.data})
+//     } catch (error) {
+//         console.log('error with fetchMovies:', error)
+//     }
+// }
 
 // Create sagaMiddleware
 const sagaMiddleware = createSagaMiddleware();
