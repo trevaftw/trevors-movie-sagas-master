@@ -14,10 +14,10 @@ class App extends Component {
   }
 
   handleClick = (event) => {
-    console.log('event:', event)
-    console.log('event.target:', event.target)
     console.log('event.target.id:', event.target.id)
+    this.props.history.push('/details')
     //I tried setting the value of the img to be the movie.id, but event.target.value wasn't working so I had to switch it to id, and that worked. 
+    //console.log(event.target.value)
   }
 
   render() {
@@ -35,9 +35,12 @@ class App extends Component {
                   <h2>{movie.title}</h2>
                   <li>{movie.description}</li>
                   <br /> <br />
+                  {JSON.stringify(this.props.history, null, 2)}
+                  <br /> <br />
+                  {JSON.stringify(this.props.location, null, 2)}
+
                 </div>
               )
-
             })}
           </ul>
         </div>
