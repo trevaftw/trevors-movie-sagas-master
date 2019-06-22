@@ -10,21 +10,30 @@ import { Provider } from 'react-redux';
 import logger from 'redux-logger';
 // Import saga middleware
 import createSagaMiddleware from 'redux-saga';
-import { takeEvery, put } from 'redux-saga/effects';
+import { takeEvery, put, take } from 'redux-saga/effects';
 
 
 // Create the rootSaga generator function
 function* rootSaga() {
     yield takeEvery('FETCH_MOVIES', fetchMovies)
-
+    yield takeEvery('FETCH_MOVIES_GENRES', fetchMoviesGenres)
 }
 
-function* fetchMovies(){
-    try{
+function* fetchMovies() {
+    try {
         console.log('Fetching Movies Saga');
         const fetchMovieResponse = yield axios.get('/api/movies')
-        yield put ({type: 'SET_MOVIES', payload: fetchMovieResponse.data})
-    }catch(error) {
+        yield put({ type: 'SET_MOVIES', payload: fetchMovieResponse.data })
+    } catch (error) {
+        console.log('error with fetchMovies:', error)
+    }
+}
+
+function* fetchMoviesGenres(action) {
+    try {
+        console.log('fetchMoviesGenres')
+        const fetchMovieResponse = yield axios.get(`api/movies_genres/${action.payload}`)
+    } catch (error) {
         console.log('error with fetchMovies:', error)
     }
 }
@@ -59,7 +68,7 @@ const movies_genres = (state = [], action) => {
         default:
             return state
     }
-}    
+}
 
 // Create one store that all components can use
 const storeInstance = createStore(
@@ -75,6 +84,6 @@ const storeInstance = createStore(
 // Pass rootSaga into our sagaMiddleware
 sagaMiddleware.run(rootSaga);
 
-ReactDOM.render(<Provider store={storeInstance}><App /></Provider>, 
+ReactDOM.render(<Provider store={storeInstance}><App /></Provider>,
     document.getElementById('root'));
 registerServiceWorker();
