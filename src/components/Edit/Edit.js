@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { Link } from 'react-router-dom'
 
 class Edit extends Component {
     state = {
@@ -11,11 +12,7 @@ class Edit extends Component {
     handleSubmit = () => {
         console.log('handleSubmit');
         console.log('this.state:', this.state);
-        this.props.dispatch({type: 'UPDATE_MOVIE', payload: this.state})
-    }
-
-    handleCancel = () => {
-        console.log('handleCancel')
+        this.props.dispatch({ type: 'UPDATE_MOVIE', payload: this.state })
     }
 
     handleTitle = (event) => {
@@ -42,14 +39,14 @@ class Edit extends Component {
                 <label>New movie description</label><br />
                 <textarea rows="4" cols="100" placeholder="New movie description" onChange={this.handleDescription} value={this.state.description}></textarea>
                 <h1>When I come back, finsih writing the saga for the submit dispatch and the route. also the cancel button and styling</h1>
-                <button onClick={this.handleSubmit}>Submit Changes</button><button onClick={this.handleCancel}>Cancel Changes</button>
+                <button onClick={this.handleSubmit}>Submit Changes</button><Link to="/details"><button>Return to Details Page</button></Link>
                 <br /><br />
-                {JSON.stringify(this.props.reduxState.movies, null, 2)}
+                {/* {JSON.stringify(this.props.reduxState.movies, null, 2)} */}
             </>
         )
     }
 }
 
-const store = (reduxState) => ({reduxState})
+const store = (reduxState) => ({ reduxState })
 
 export default connect(store)(Edit);

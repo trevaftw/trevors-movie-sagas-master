@@ -31,8 +31,8 @@ function* fetchMovies() {
     }
 }
 
-function* fetchSingleMovie(action){
-    try{
+function* fetchSingleMovie(action) {
+    try {
         // console.log('fetchSingleMovie');
         // console.log('action.payload:', action.payload)
         const fetchSingleMovieResponse = yield axios.get(`api/singleMovie/${action.payload}`)
@@ -41,16 +41,16 @@ function* fetchSingleMovie(action){
         const fetchSingleGenreResponse = yield axios.get(`api/movies_genres/${action.payload}`)
         // console.log('fetchSingleGenreResponse.data:', fetchSingleGenreResponse.data)
         yield put({ type: 'SET_TAGS', payload: fetchSingleGenreResponse.data })
-    }catch (error) {
+    } catch (error) {
         console.log('error with fetchSingleMovie:', error)
     }
 }
 
-function* updateMovie(action){
-    try{
+function* updateMovie(action) {
+    try {
         console.log('Updating Movie Saga', action.payload);
         yield axios.put(`/api/update_movie/`, (action.payload));
-        yield put({type: 'FETCH_MOVIES'})
+        yield put({ type: 'FETCH_MOVIES' })
     } catch (error) {
         console.log('error with update movies:', error)
     }
