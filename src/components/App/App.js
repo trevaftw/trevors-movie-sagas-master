@@ -3,7 +3,6 @@ import './App.css';
 import { connect } from 'react-redux';
 import { HashRouter as Router, Route } from 'react-router-dom';
 
-
 import Details from '../Details/Details';
 import Home from '../Home/Home';
 import Edit from '../Edit/Edit';

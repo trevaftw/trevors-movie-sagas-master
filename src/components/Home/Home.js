@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
-
 class App extends Component {
   // Renders the entire app on the DOM
 
@@ -15,7 +14,7 @@ class App extends Component {
 
   handleClick = (event) => {
     console.log('event.target.id:', event.target.id)
-    this.props.dispatch({ type: 'FETCH_SINGLE_MOVIE', payload: event.target.id})
+    this.props.dispatch({ type: 'FETCH_SINGLE_MOVIE', payload: event.target.id })
     this.props.history.push('/details')
 
     // let movieID = event.target.id;
@@ -28,23 +27,23 @@ class App extends Component {
 
   render() {
     return (
-        <div className="App">
-          <br />
-          {/* {JSON.stringify(this.props, null, 2)} */}
-          <br />
-          <h1>Movie time!</h1>
-          <ul>
-            {this.props.reduxState.movies.map(movie => {
-              return (
-                <div key={movie.id}>
-                  <img src={movie.poster} alt={movie.description} id={movie.id} onClick={this.handleClick} />
-                  <h2>{movie.title}</h2>
-                  <li>{movie.description}</li>
-                </div>
-              )
-            })}
-          </ul>
-        </div>
+      <div className="App">
+        <br />
+        {/* {JSON.stringify(this.props, null, 2)} */}
+        <br />
+        <h1>Movie time!</h1>
+        <ul>
+          {this.props.reduxState.movies.map(movie => {
+            return (
+              <div key={movie.id}>
+                <img src={movie.poster} alt={movie.description} id={movie.id} onClick={this.handleClick} />
+                <h2>{movie.title}</h2>
+                <li>{movie.description}</li>
+              </div>
+            )
+          })}
+        </ul>
+      </div>
     );
   }
 }

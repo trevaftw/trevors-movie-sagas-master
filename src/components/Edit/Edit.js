@@ -37,11 +37,11 @@ class Edit extends Component {
                 <input placeholder="New Movie Title" onChange={this.handleTitle} value={this.state.title}></input>
                 <br /><br />
                 <label>New movie description</label><br />
-                <textarea rows="4" cols="100" placeholder="New movie description" onChange={this.handleDescription} value={this.state.description}></textarea>
-                <h1>When I come back, finsih writing the saga for the submit dispatch and the route. also the cancel button and styling</h1>
+                <textarea rows="8" cols="100" placeholder="New movie description" onChange={this.handleDescription} value={this.state.description}></textarea>
+                <br /><br />
                 <button onClick={this.handleSubmit}>Submit Changes</button><Link to="/details"><button>Return to Details Page</button></Link>
                 <br /><br />
-                {/* {JSON.stringify(this.props.reduxState.movies, null, 2)} */}
+                {JSON.stringify(this.props.reduxState.movies, null, 2)}
             </>
         )
     }

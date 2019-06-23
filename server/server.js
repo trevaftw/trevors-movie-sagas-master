@@ -11,7 +11,6 @@ app.use(express.static('build'));
 /** ---------- ROUTES ---------- **/
 app.use('/api', routerApi);
 
-
 /** ---------- START SERVER ---------- **/
 app.listen(port, function () {
     console.log('Listening on port: ', port);
