@@ -30,18 +30,30 @@ router.get('/singleMovie/:id', (req, res) => {
 })
 
 router.get('/movies_genres/:id', (req, res) => {
-    console.log('req.params:',req.params.id)
+    console.log('req.params:', req.params.id)
     pool.query(`
     SELECT "genres"."name" FROM "movies"
     JOIN "movies_genres" ON "movies"."id"="movies_genres"."movies_id"
     JOIN "genres" on "genres"."id"="movies_genres"."genres_id"
     WHERE "movies"."id"=$1;`, [req.params.id]
     )
-    .then(result => {
-        console.log('result.rows:', result.rows);
-        res.send(result.rows);
+        .then(result => {
+            console.log('result.rows:', result.rows);
+            res.send(result.rows);
+        }).catch(error => {
+            console.log('error with api/movies get:', error);
+            res.sendStatus(500);
+        })
+})
+
+router.put('/update_movie/', (req, res) => {
+    console.log('req.body:', req.body.id, req.body.title, req.body.description);
+    pool.query(`
+    UPDATE "movies" SET "title"=$1, "description"=$2 WHERE "id"=$3;`, [req.body.title, req.body.description, req.body.id]
+    ).then(result => {
+        res.sendStatus(200)
     }).catch(error => {
-        console.log('error with api/movies get:', error);
+        console.log('error with update_movie get:', error);
         res.sendStatus(500);
     })
 })

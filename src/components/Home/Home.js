@@ -30,7 +30,7 @@ class App extends Component {
     return (
         <div className="App">
           <br />
-          {/* {JSON.stringify(this.props.reduxState.movies, null, 2)} */}
+          {/* {JSON.stringify(this.props, null, 2)} */}
           <br />
           <h1>Movie time!</h1>
           <ul>

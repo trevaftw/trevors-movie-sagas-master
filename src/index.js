@@ -17,6 +17,7 @@ import { takeEvery, put, take } from 'redux-saga/effects';
 function* rootSaga() {
     yield takeEvery('FETCH_MOVIES', fetchMovies)
     yield takeEvery('FETCH_SINGLE_MOVIE', fetchSingleMovie)
+    yield takeEvery('UPDATE_MOVIE', updateMovie)
     // yield takeEvery('FETCH_MOVIES_GENRES', fetchMoviesGenres)
 }
 
@@ -42,6 +43,16 @@ function* fetchSingleMovie(action){
         yield put({ type: 'SET_TAGS', payload: fetchSingleGenreResponse.data })
     }catch (error) {
         console.log('error with fetchSingleMovie:', error)
+    }
+}
+
+function* updateMovie(action){
+    try{
+        console.log('Updating Movie Saga', action.payload);
+        yield axios.put(`/api/update_movie/`, (action.payload));
+        yield put({type: 'FETCH_MOVIES'})
+    } catch (error) {
+        console.log('error with update movies:', error)
     }
 }
 

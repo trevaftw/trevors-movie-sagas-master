@@ -1,14 +1,17 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
 
 class Edit extends Component {
     state = {
-        title: '',
-        description: '',
+        id: this.props.reduxState.movies[0].id,
+        title: this.props.reduxState.movies[0].title,
+        description: this.props.reduxState.movies[0].description,
     }
 
     handleSubmit = () => {
         console.log('handleSubmit');
         console.log('this.state:', this.state);
+        this.props.dispatch({type: 'UPDATE_MOVIE', payload: this.state})
     }
 
     handleCancel = () => {
@@ -38,11 +41,15 @@ class Edit extends Component {
                 <br /><br />
                 <label>New movie description</label><br />
                 <textarea rows="4" cols="100" placeholder="New movie description" onChange={this.handleDescription} value={this.state.description}></textarea>
-                <h1>When I come back, have the input field and text area create a local state, and on submit they will run a saga that updates the database</h1>
+                <h1>When I come back, finsih writing the saga for the submit dispatch and the route. also the cancel button and styling</h1>
                 <button onClick={this.handleSubmit}>Submit Changes</button><button onClick={this.handleCancel}>Cancel Changes</button>
+                <br /><br />
+                {JSON.stringify(this.props.reduxState.movies, null, 2)}
             </>
         )
     }
 }
 
-export default Edit;
+const store = (reduxState) => ({reduxState})
+
+export default connect(store)(Edit);
