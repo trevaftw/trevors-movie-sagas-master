@@ -6,6 +6,11 @@ import { withRouter } from "react-router";
 
 
 class Details extends Component {
+
+    handleClick = () => {
+        this.props.dispatch({type: 'EMPTY_MOVIE'})
+    }
+
     render() {
         return (
             <>
@@ -24,7 +29,7 @@ class Details extends Component {
                 })}
 
 
-                <Link to="/"><button>Return to Movie List</button></Link>
+                <Link to="/"><button onClick={this.handleClick}>Return to Movie List</button></Link>
                 <Link to="/edit"><button>Modify the info</button></Link>
                 {/* {JSON.stringify(this.props.reduxState.movies, null, 4)}
             <br /> <br />

@@ -95,6 +95,8 @@ const singleMovie = (state = [], action) => {
     switch (action.type) {
         case 'SINGLE_MOVIE':
             return action.payload;
+        case 'EMPTY_MOVIE':
+            return [];
         default:
             return state;
     }
