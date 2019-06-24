@@ -38,6 +38,7 @@ function* fetchSingleMovie(action) {
         const fetchSingleMovieResponse = yield axios.get(`api/singleMovie/${action.payload}`)
         // console.log('fetchSingleMovieResponse.data:', fetchSingleMovieResponse.data)
         yield put({ type: 'SET_MOVIES', payload: fetchSingleMovieResponse.data })
+        //
         const fetchSingleGenreResponse = yield axios.get(`api/movies_genres/${action.payload}`)
         // console.log('fetchSingleGenreResponse.data:', fetchSingleGenreResponse.data)
         yield put({ type: 'SET_TAGS', payload: fetchSingleGenreResponse.data })
@@ -89,21 +90,21 @@ const genres = (state = [], action) => {
     }
 }
 
-const movies_genres = (state = [], action) => {
-    switch (action.type) {
-        case 'SET_MOVIES_GENRES':
-            return action.payload;
-        default:
-            return state
-    }
-}
+// const movies_genres = (state = [], action) => {
+//     switch (action.type) {
+//         case 'SET_MOVIES_GENRES':
+//             return action.payload;
+//         default:
+//             return state
+//     }
+// }
 
 // Create one store that all components can use
 const storeInstance = createStore(
     combineReducers({
         movies,
         genres,
-        movies_genres
+        // movies_genres
     }),
     // Add sagaMiddleware to our store
     applyMiddleware(sagaMiddleware, logger),
