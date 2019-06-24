@@ -4,15 +4,17 @@ import { Link } from 'react-router-dom'
 
 class Edit extends Component {
     state = {
-        id: this.props.reduxState.movies[0].id,
-        title: this.props.reduxState.movies[0].title,
-        description: this.props.reduxState.movies[0].description,
+        id: this.props.reduxState[0].id,
+        title: this.props.reduxState[0].title,
+        description: this.props.reduxState[0].description,
     }
 
     handleSubmit = () => {
         console.log('handleSubmit');
         console.log('this.state:', this.state);
         this.props.dispatch({ type: 'UPDATE_MOVIE', payload: this.state })
+        this.props.history.push('/details');
+
     }
 
     handleTitle = (event) => {
@@ -41,12 +43,12 @@ class Edit extends Component {
                 <br /><br />
                 <button onClick={this.handleSubmit}>Submit Changes</button><Link to="/details"><button>Return to Details Page</button></Link>
                 <br /><br />
-                {JSON.stringify(this.props.reduxState.movies, null, 2)}
+                {JSON.stringify(this.props.reduxState, null, 2)}
             </>
         )
     }
 }
 
-const store = (reduxState) => ({ reduxState })
+const store = (reduxState) => ({ reduxState: reduxState.singleMovie })
 
 export default connect(store)(Edit);

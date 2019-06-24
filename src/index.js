@@ -37,7 +37,7 @@ function* fetchSingleMovie(action) {
         // console.log('action.payload:', action.payload)
         const fetchSingleMovieResponse = yield axios.get(`api/singleMovie/${action.payload}`)
         // console.log('fetchSingleMovieResponse.data:', fetchSingleMovieResponse.data)
-        yield put({ type: 'SET_MOVIES', payload: fetchSingleMovieResponse.data })
+        yield put({ type: 'SINGLE_MOVIE', payload: fetchSingleMovieResponse.data })
         //
         const fetchSingleGenreResponse = yield axios.get(`api/movies_genres/${action.payload}`)
         // console.log('fetchSingleGenreResponse.data:', fetchSingleGenreResponse.data)
@@ -52,6 +52,7 @@ function* updateMovie(action) {
         console.log('Updating Movie Saga', action.payload);
         yield axios.put(`/api/update_movie/`, (action.payload));
         yield put({ type: 'FETCH_MOVIES' })
+        yield put({ type: 'SINGLE_MOVIE', payload: [action.payload]})
     } catch (error) {
         console.log('error with update movies:', error)
     }
@@ -90,6 +91,15 @@ const genres = (state = [], action) => {
     }
 }
 
+const singleMovie = (state = [], action) => {
+    switch (action.type) {
+        case 'SINGLE_MOVIE':
+            return action.payload;
+        default:
+            return state;
+    }
+}
+
 // const movies_genres = (state = [], action) => {
 //     switch (action.type) {
 //         case 'SET_MOVIES_GENRES':
@@ -105,6 +115,7 @@ const storeInstance = createStore(
         movies,
         genres,
         // movies_genres
+        singleMovie,
     }),
     // Add sagaMiddleware to our store
     applyMiddleware(sagaMiddleware, logger),

@@ -1,12 +1,15 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { Link } from 'react-router-dom'
+import { Link } from 'react-router-dom';
+import { withRouter } from "react-router";
+
+
 
 class Details extends Component {
     render() {
         return (
             <>
-                {this.props.reduxState.movies.map((movie, i) => {
+                {this.props.reduxState.singleMovie.map((movie, i) => {
                     return (
                         <div key={i}>
                             <h1>{movie.title}</h1>
@@ -35,4 +38,4 @@ const store = (reduxState) => ({
     reduxState
 })
 
-export default connect(store)(Details);
+export default withRouter(connect(store)(Details));
