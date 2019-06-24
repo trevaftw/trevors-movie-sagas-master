@@ -1,0 +1,13 @@
+.movie-div{
+    display: block;
+    height: auto;
+    overflow: auto
+}
+
+.movie-poster {
+float: left;
+}
+
+.info{
+    float: center;
+}

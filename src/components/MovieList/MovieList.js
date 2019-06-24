@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { withRouter } from "react-router";
+import './MovieList.css';
 
 class MovieList extends Component {
   // Renders the entire app on the DOM
@@ -28,17 +29,19 @@ class MovieList extends Component {
 
   render() {
     return (
-        <>
-          {this.props.reduxState.movies.map(movie => {
-            return (
-              <div key={movie.id}>
-                <img src={movie.poster} alt={movie.description} id={movie.id} onClick={this.handleClick} />
-                <h2>{movie.title}</h2>
-                <li>{movie.description}</li>
+      <>
+        {this.props.reduxState.movies.map(movie => {
+          return (
+            <div key={movie.id} className="movie-div">
+              <img src={movie.poster} alt={movie.description} id={movie.id} onClick={this.handleClick} className="movie-poster" />
+              <div className="info">
+                <h2 className="movie-title">{movie.title}</h2>
+                <li className="movie-description">{movie.description}</li>
                 <hr />
               </div>
-            )
-          })}
+            </div>
+          )
+        })}
       </>
     );
   }
