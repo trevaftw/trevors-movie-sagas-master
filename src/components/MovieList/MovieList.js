@@ -32,14 +32,16 @@ class MovieList extends Component {
       <>
         {this.props.reduxState.movies.map(movie => {
           return (
-            <div key={movie.id} className="movie-div">
-              <img src={movie.poster} alt={movie.description} id={movie.id} onClick={this.handleClick} className="movie-poster" />
-              <div className="info">
-                <h2 className="movie-title">{movie.title}</h2>
-                <li className="movie-description">{movie.description}</li>
-                <hr />
+            <section key={movie.description}>
+              <div key={movie.id} className="movie-div">
+                <img src={movie.poster} alt={movie.description} id={movie.id} onClick={this.handleClick} className="movie-poster" />
+                <div className="info">
+                  <h2 className="movie-title">{movie.title}</h2>
+                  <li className="movie-description">{movie.description}</li>
+                </div>
               </div>
-            </div>
+              <hr />
+            </section>
           )
         })}
       </>
