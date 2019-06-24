@@ -35,6 +35,7 @@ class MovieList extends Component {
                 <img src={movie.poster} alt={movie.description} id={movie.id} onClick={this.handleClick} />
                 <h2>{movie.title}</h2>
                 <li>{movie.description}</li>
+                <hr />
               </div>
             )
           })}
