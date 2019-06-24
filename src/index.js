@@ -86,6 +86,8 @@ const genres = (state = [], action) => {
     switch (action.type) {
         case 'SET_TAGS':
             return action.payload;
+        case 'EMPTY_TAGS':
+            return [];
         default:
             return state;
     }

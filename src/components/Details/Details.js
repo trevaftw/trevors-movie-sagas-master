@@ -9,6 +9,7 @@ class Details extends Component {
 
     handleClick = () => {
         this.props.dispatch({type: 'EMPTY_MOVIE'})
+        this.props.dispatch({type: 'EMPTY_TAGS'})
     }
 
     render() {

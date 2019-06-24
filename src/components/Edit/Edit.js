@@ -4,9 +4,9 @@ import { Link } from 'react-router-dom'
 
 class Edit extends Component {
     state = {
-        id: this.props.reduxState[0].id,
-        title: this.props.reduxState[0].title,
-        description: this.props.reduxState[0].description,
+        id: (this.props.reduxState && this.props.reduxState[0] && this.props.reduxState[0].id) || 0,
+        title: (this.props.reduxState && this.props.reduxState[0] && this.props.reduxState[0].title) || '',
+        description: (this.props.reduxState && this.props.reduxState[0] &&this.props.reduxState[0].description) || '',
     }
 
     handleSubmit = () => {
