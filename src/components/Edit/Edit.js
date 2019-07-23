@@ -43,7 +43,7 @@ class Edit extends Component {
                 <br /><br />
                 <button onClick={this.handleSubmit}>Submit Changes</button><Link to="/details"><button>Return to Details Page</button></Link>
                 <br /><br />
-                {JSON.stringify(this.props.reduxState, null, 2)}
+                {/* {JSON.stringify(this.props.reduxState, null, 2)} */}
             </>
         )
     }
