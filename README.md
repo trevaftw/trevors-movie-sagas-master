@@ -1,4 +1,4 @@
-#Movie Time!
+# Movie Time!
 
 This app is designed to practice using React-Redux and Sagas. A user is able to click on a movie poster and get the genres of the movie and the details, and can click through to edit the information if it is incorrect and update the databse accordingly. 
 
